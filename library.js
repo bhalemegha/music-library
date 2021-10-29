@@ -143,7 +143,7 @@ const addTrackToPlaylist = function (trackId, playlistId) {
               }
        } 
 }
-addTrackToPlaylist("t01","p01");
+//addTrackToPlaylist("t01","p01");
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
@@ -151,12 +151,23 @@ const generateUid = function () {
        return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 }
 
-
 // adds a track to the library
 const addTrack = function (name, artist, album) {
-
+       const obj = {};
+       let id = generateUid();
+       for (let i in library) {
+              if (i === "tracks") {
+                     obj["id"] = id;
+                     obj["name"] = name;
+                     obj["artist"] = artist;
+                     obj["album"] = album;
+                     library[i][id] = obj;
+                     console.log(library[i]);
+                     break;
+              }
+       }
 }
-
+addTrack("fun song","megha","Sing a Song")
 
 // adds a playlist to the library
 const addPlaylist = function (name) {
