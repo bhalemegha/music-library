@@ -65,12 +65,12 @@ const printTracks = function () {
                      for (let j in library[i]) {
                             let str = "";
                             for (let item in library[i][j]) {
-                                   
+
                                    if (item === "artist") {
                                           str += "by "
                                    }
-                                   if (item === "album" ) {
-                                          str+= "("
+                                   if (item === "album") {
+                                          str += "("
                                    }
                                    str += library[i][j][item] + " ";
                             }
@@ -88,24 +88,24 @@ const printPlaylistsByGivenPlaylist = function (playList) {
               if (i === "tracks") {
                      for (let j in library[i]) {
                             let str = "";
-                            if(j === playList){
+                            if (j === playList) {
                                    for (let item in library[i][j]) {
-                                          
+
                                           if (item === "artist") {
                                                  str += "by "
                                           }
-                                          if (item === "album" ) {
-                                                 str+= "("
+                                          if (item === "album") {
+                                                 str += "("
                                           }
                                           str += library[i][j][item] + " ";
                                    }
                                    console.log(str + ")");
-                            }                            
+                            }
                      }
               }
               if (i === "playlists") {
                      for (let j in library[i]) {
-                            if(j === playList){
+                            if (j === playList) {
                                    for (let item in library[i][j]) {
                                           if (library[i][j][item] === playList) {
                                                  console.log(`${j}: Coding Music - ${library[i][j][item].length} tracks`);
@@ -132,7 +132,7 @@ const addTrackToPlaylist = function (trackId, playlistId) {
        for (let i in library) {
               if (i === "playlists") {
                      for (let j in library[i]) {
-                            if(j === playlistId){
+                            if (j === playlistId) {
                                    for (let item in library[i][j]) {
                                           if (item === "tracks") {
                                                  library[i][j][item].push(trackId);
@@ -141,7 +141,7 @@ const addTrackToPlaylist = function (trackId, playlistId) {
                             }
                      }
               }
-       } 
+       }
 }
 //addTrackToPlaylist("t01","p01");
 
@@ -167,13 +167,23 @@ const addTrack = function (name, artist, album) {
               }
        }
 }
-addTrack("fun song","megha","Sing a Song")
+//addTrack("fun song","megha","Sing a Song")
 
 // adds a playlist to the library
 const addPlaylist = function (name) {
-
+       const obj = {};
+       let id = generateUid();
+       for (let i in library) {
+              if (i === "playlists") {
+                     obj["id"] = id;
+                     obj["name"] = name;
+                     library[i][id] = obj;
+                     console.log(library[i]);
+                     break;
+              }
+       }
 }
-
+addPlaylist("testPlayList");
 
 // STRETCH:
 // given a query string string, prints a list of tracks
