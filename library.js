@@ -79,10 +79,66 @@ const printTracks = function () {
 
               }
        }
-
 }
 
-printTracks();
+// printTracks();
+// const printTracksByGivenTracks = function (track) {
+//        for (let i in library) {
+//               if (i === "tracks") {
+//                      for (let j in library[i]) {
+//                             let str = "";
+//                             if(j === track){
+//                                    for (let item in library[i][j]) {
+                                          
+//                                           if (item === "artist") {
+//                                                  str += "by "
+//                                           }
+//                                           if (item === "album" ) {
+//                                                  str+= "("
+//                                           }
+//                                           str += library[i][j][item] + " ";
+//                                    }
+//                                    console.log(str + ")");
+//                             }                            
+//                      }
+//               }
+//        }
+// }
+
+const printPlaylistsByGivenPlaylist = function (playList) {
+       for (let i in library) {
+              if (i === "tracks") {
+                     for (let j in library[i]) {
+                            let str = "";
+                            if(j === playList){
+                                   for (let item in library[i][j]) {
+                                          
+                                          if (item === "artist") {
+                                                 str += "by "
+                                          }
+                                          if (item === "album" ) {
+                                                 str+= "("
+                                          }
+                                          str += library[i][j][item] + " ";
+                                   }
+                                   console.log(str + ")");
+                            }                            
+                     }
+              }
+              if (i === "playlists") {
+                     for (let j in library[i]) {
+                            if(j === playList){
+                                   for (let item in library[i][j]) {
+                                          if (library[i][j][item] === playList) {
+                                                 console.log(`${j}: Coding Music - ${library[i][j][item].length} tracks`);
+                                          }
+                                   }
+                            }
+                     }
+              }
+       }
+}
+printPlaylistsByGivenPlaylist("t01");
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
