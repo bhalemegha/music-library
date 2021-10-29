@@ -82,28 +82,6 @@ const printTracks = function () {
 }
 
 // printTracks();
-// const printTracksByGivenTracks = function (track) {
-//        for (let i in library) {
-//               if (i === "tracks") {
-//                      for (let j in library[i]) {
-//                             let str = "";
-//                             if(j === track){
-//                                    for (let item in library[i][j]) {
-                                          
-//                                           if (item === "artist") {
-//                                                  str += "by "
-//                                           }
-//                                           if (item === "album" ) {
-//                                                  str+= "("
-//                                           }
-//                                           str += library[i][j][item] + " ";
-//                                    }
-//                                    console.log(str + ")");
-//                             }                            
-//                      }
-//               }
-//        }
-// }
 
 const printPlaylistsByGivenPlaylist = function (playList) {
        for (let i in library) {
@@ -138,21 +116,34 @@ const printPlaylistsByGivenPlaylist = function (playList) {
               }
        }
 }
-printPlaylistsByGivenPlaylist("t01");
+
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 const printPlaylist = function (playlistId) {
-
+       printPlaylistsByGivenPlaylist(playlistId);
 }
 
+//printPlaylist("p02");
 
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function (trackId, playlistId) {
-
+       for (let i in library) {
+              if (i === "playlists") {
+                     for (let j in library[i]) {
+                            if(j === playlistId){
+                                   for (let item in library[i][j]) {
+                                          if (item === "tracks") {
+                                                 library[i][j][item].push(trackId);
+                                          }
+                                   }
+                            }
+                     }
+              }
+       } 
 }
-
+addTrackToPlaylist("t01","p01");
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
